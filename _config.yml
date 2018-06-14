@@ -1,0 +1,22 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Alex Ward
+email: alxwrd@googlemail.com
+description: developer | pythonista
+avatarurl: https://avatars1.githubusercontent.com/u/13941027?s=460&v=4
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "/" # the base hostname & protocol for your site
+twitter_username: alxwrd_
+github_username:  alxwrd
+paginate: 5
+theme-dark: false #Set to true to change to dark website theme
+
+gems: [jekyll-paginate, kramdown]
+# Build settings
+markdown: kramdown
