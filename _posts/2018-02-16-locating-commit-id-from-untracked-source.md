@@ -2,7 +2,7 @@
 layout: post
 title:  "Locating a git commit id from untracked source files."
 date:   2019-02-17 22:00:00
-categories: ["blog", "git"]
+tags: ["blog", "git"]
 author: "Alex Ward"
 ---
 
