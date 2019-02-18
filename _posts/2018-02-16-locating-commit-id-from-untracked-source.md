@@ -72,7 +72,7 @@ Now we can change back to our main repository, then add and fetch the new reposi
 
 ```shell
 $ cd ../my-project
-$ git add remote untracked ../untracked-source
+$ git remote add untracked ../untracked-source
 $ git fetch untracked
 ```
 
@@ -133,7 +133,7 @@ Finally, we need to use the filter `--diff-filter=M` to only show _modifications
 
 Ignoring whitespace changes might also be useful, the some of the options are
 
-`--ignore-space-at-eol`, `--ignore-cr-at-eol`, `ignore-space-change`, `--ignore-all-space `, `--ignore-blank-lines` , and `--allow-indentation-change`.
+`--ignore-space-at-eol`, `--ignore-cr-at-eol`, `--ignore-space-change`, `--ignore-all-space `, `--ignore-blank-lines` , and `--allow-indentation-change`.
 
 More can be found by browsing the [git-diff docs](https://git-scm.com/docs/git-diff).
 
