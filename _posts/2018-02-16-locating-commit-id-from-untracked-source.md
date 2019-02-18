@@ -99,7 +99,7 @@ done;
 
 ### `git rev-list` filters 
 
-If we have no idea where in the source tree the untracked source came from, the all real option is to use `--all` and walk through every commit in our repository. Even an guesstimate can help shorten this process.
+If we have no idea where in the source tree the untracked source came from, the only real option is to use `--all` and walk through every commit in our repository. Even an guesstimate can help shorten this process though.
 
 For all filters available, run `git rev-list` with no options, or visit the [git docs](https://git-scm.com/docs/git-rev-list).
 
@@ -109,7 +109,7 @@ We can use `--after=yyyy-mm-dd --until=yyyy-mm-dd` if there is a period when the
 
 #### Versions
 
-If we know it exists before or after a commit id, or tag, in the git tree, we can use `<commit id>..<commit id>` or `<tag>..<tag>`.
+If we know it exists from before or after a commit id, or tag, in the git tree, we can use `<commit id>..<commit id>` or `<tag>..<tag>`.
 
 #### Parents
 
@@ -121,7 +121,7 @@ When generating a revision list, we might only want to stick to the 'main line',
 
 We don't want all the information `git diff` would give us. 
 
-First, we want to use `--shortstat` hide the actual line changes, and only output the summary of the diff.
+First, we want to use `--shortstat` to hide the actual line changes, and only output the summary of the diff.
 
 ```plain
 10 files changed, 423 insertions(+), 832 deletions(-), d6cd1e2bd19e03a81132a23b2025920577f84e37
