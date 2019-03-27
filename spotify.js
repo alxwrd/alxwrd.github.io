@@ -21,10 +21,9 @@ async function fetchPlayingData() {
   try {
     data = await resp.json()
   } catch {
-    return { title: "", is_playing: false }
+    return { title: "Offline", is_playing: false }
   }
 
-  console.log(data)
   let song = data.item.name;
   let artist = data.item.artists.map((artist) => {
     return artist.name
@@ -33,14 +32,32 @@ async function fetchPlayingData() {
   return {
     title: `${song} - ${artist}`,
     is_playing: data.is_playing,
+    url: data.item.external_urls.spotify,
   }
 }
 
 (async function refreshSong() {
   let song = await fetchPlayingData();
 
-  document.getElementById("playing").innerText =
-    song.is_playing ? song.title : "Nothing playing";
+  let playing = document.getElementById("playing");
+  let logo = document.getElementById("spotify-logo")
+
+  playing.innerText = song.is_playing ? song.title : "Offline";
+
+  const clickEvent = ["click", () => {window.open(song.url, "_blank")}, true];
+
+  if (song.is_playing) {
+    logo.style.color = "#82c91e"
+    playing.classList.add("marquee-animation");
+    document.getElementById("spotifyPlaying")
+      .addEventListener(...clickEvent);
+
+  } else {
+    logo.style.color = "#666666"
+    playing.classList.remove("marquee-animation");
+    document.getElementById("spotifyPlaying")
+      .removeEventListener(...clickEvent);
+  }
 
   setTimeout(refreshSong, 120000)
 })();
