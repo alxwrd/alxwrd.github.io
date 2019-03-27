@@ -354,7 +354,6 @@ pre {
 .site-description {
   font-size: 14px;
   letter-spacing: 2px;
-  text-indent: 6px;
   font-family: 'Josefin Sans';
 }
 .exclamationMark {
@@ -617,15 +616,25 @@ pre {
     box-sizing: border-box;
 }
 
-.marquee span {
+.marquee #playing {
     display: inline-block;
     padding-left: 100%;
     animation: marquee 10s linear infinite;
+    z-index: -1;
 }
 
 @keyframes marquee {
     0%   { transform: translate(0, 0); }
     100% { transform: translate(-100%, 0); }
+}
+
+
+.fa.fa-spotify {
+  color: #82c91e;
+  background: #fdfdfd;
+  height: 15px;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
 }
 
 /**
