@@ -1,30 +1,20 @@
+<header class="site-header">
 
-<div class="wrapper">
-    <center>
-        <a href="mailto:{{ site.email }}?subject=Hello!" target="_blank">
-            <img src="{{ site.avatarurl }}" alt="Author thumbnail" class="dot">
-        </a>
-        <a href="/">
-           <div class="site-title">
-               {{site.title}}
-           </div>
-        </a>
-    </center>
-</div>
-<div class="wrapper site-description">
-<center>
-    {{site.description}}
-</center>
-</div>
-<div class="wrapper">
-  <div class="trigger site-navigation">
-    <a class="page-link" href="/">HOME</a>
+  <div class="wrapper">
 
-    {% for sitePage in site.pages %}
-    {% if sitePage.title %}
+    <a class="site-title" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
 
-    <span class="exclamationMark">/</span><a class="page-link" href="{{sitePage.url | prepend: site.baseurl }}">{{sitePage.title}}</a>
-    {% endif %}
-    {% endfor %}
+    <nav class="site-nav">
+      {% for link in site.data.navigation.main %}
+        {% if link.url contains "http" %}
+          {% assign url = link.url %}
+        {% else %}
+          {% assign url = link.url | relative_url %}
+        {% endif %}
+        <a class="page-link" href="{{ url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
   </div>
-</div>
+
+</header>

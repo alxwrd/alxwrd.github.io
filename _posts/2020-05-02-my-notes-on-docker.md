@@ -6,11 +6,13 @@ tags: ["blog", "docker"]
 author: "Alex Ward"
 ---
 
-*The documentation at [https://docs.docker.com/get-started/](https://docs.docker.com/get-started/) is really good and I would recommend reading through the first 2 parts. This post is mostly just the tutorial rehashed.*
+> *The documentation at [https://docs.docker.com/get-started/](https://docs.docker.com/get-started/) is really good and I would recommend reading through the first 2 parts. This post is mostly just the tutorial rehashed.*
 
-# What is Docker?
+## What is Docker?
 
 "Docker" is a collection of applications that help package and distribute applications. Installing Docker on a machine is similar to installing a Java Virtual Machine. However, where a JVM abstracts the CPU, Docker abstracts an entire system.
+
+<!-- more -->
 
 Docker (for the most part) is a comprised of 2 applications: the Docker daemon and the Docker CLI. You will need at least the Docker CLI installed on your local machine, and the Docker daemon could be running else where. Having the daemon installed elsewhere is perhaps something you don't need to worry about to start with though.
 
@@ -18,7 +20,7 @@ Docker used to be only truly a Linux application, as it relied on features avail
 
 There is however now [native Windows support](https://www.docker.com/blog/build-your-first-docker-windows-server-container/).
 
-# Installing
+## Installing
 
 For Windows, Microsoft Hyper-V is required to run Docker Desktop. When Hyper-V is enabled, VirtualBox no longer works.
 
@@ -37,11 +39,11 @@ I currently have WSL installed, so I followed the WSL install blog post. However
 docker run -d --restart=always -p 127.0.0.1:2375:2375 -v /var/run/docker.sock:/var/run/docker.sock  alpine/socat  tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
 ```
 
-# First container
+## First container
 
 *This is the same steps as [https://docs.docker.com/get-started/part2/](https://docs.docker.com/get-started/part2/) but with one of my repos.*
 
-## Defining a Dockerfile
+### Defining a Dockerfile
 
 Clone the project from GitHub
 
@@ -74,7 +76,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 `CMD` runs a command in a running container.
 
-## Building an image
+### Building an image
 
 You can now build an image from this Dockerfile using the command
 
@@ -116,7 +118,7 @@ docker load < bus-stop.tar
 docker load --input bus-stop.tar
 ```
 
-## Starting a container
+### Starting a container
 
 Once the image has been build, we can run it in a container.
 

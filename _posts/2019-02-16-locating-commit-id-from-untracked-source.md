@@ -6,15 +6,17 @@ tags: ["blog", "git"]
 author: "Alex Ward"
 ---
 
-![](https://i.imgur.com/MzX4VjD.png)
-
 >  _This is an expansion on [How can I find a commit that most closely matches a directory?](https://stackoverflow.com/questions/6388283/git-how-can-i-find-a-commit-that-most-closely-matches-a-directory)_
 
 The situation is as follows: you have a set of source files that are untracked and you want to locate at what point in your git tree they came from.
 
 You know they _should_ match a commit id in your repository (or as close as you can get), but you're not sure _where_. These files might also have had untracked changes done to them since.
 
-# Setting up
+<!-- more -->
+
+![](https://i.imgur.com/MzX4VjD.png)
+
+## Setting up
 
 First thing we want to do is create a new local repository. This repository will contain the untracked code, and serve as an easy way to reference it from within git.
 
@@ -66,7 +68,7 @@ $ git commit -m "initial commit"
 
 Don't worry too much about this repository, it's only use is to help us find the commit id in the real repository.
 
-# Searching
+## Searching
 
 Now we can change back to our main repository, then add and fetch the new repository. 
 
@@ -95,29 +97,29 @@ done;
 ```
 
 
-## Breaking it down
+### Breaking it down
 
-### `git rev-list` filters 
+#### `git rev-list` filters 
 
 If we have no idea where in the source tree the untracked source came from, the only real option is to use `--all` and walk through every commit in our repository. Even an guesstimate can help shorten this process though.
 
 For all filters available, run `git rev-list` with no options, or visit the [git docs](https://git-scm.com/docs/git-rev-list).
 
-#### Time
+##### Time
 
 We can use `--after=yyyy-mm-dd --until=yyyy-mm-dd` if there is a period when the untracked source might have been produced.
 
-#### Versions
+##### Versions
 
 If we know it exists from before or after a commit id, or tag, in the git tree, we can use `<commit id>..<commit id>` or `<tag>..<tag>`.
 
-#### Parents
+##### Parents
 
 When generating a revision list, we might only want to stick to the 'main line', and not traverse branches that have been merged. For this, use `--first-parent `. 
 
 ![](https://i.imgur.com/E3nqXuc.png)
 
-### `git diff` filters
+#### `git diff` filters
 
 We don't want all the information `git diff` would give us. 
 
@@ -137,7 +139,7 @@ Ignoring whitespace changes might also be useful, the some of the options are
 
 More can be found by browsing the [git-diff docs](https://git-scm.com/docs/git-diff).
 
-## Running the search
+### Running the search
 
 Once our bash script has been crafted, it's time to run it!
 
@@ -154,7 +156,7 @@ yyyy-mm-dd hh:mm:ss +0000, 9 files changed, 354 insertions(+), 753 deletions(-),
 ```
 
 
-# Parsing the results
+## Parsing the results
 
 Now we have the results in hand, we can begin our search.
 
