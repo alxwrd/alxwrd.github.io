@@ -8,8 +8,6 @@ author: "Alex Ward"
 
 > *The documentation at [https://docs.docker.com/get-started/](https://docs.docker.com/get-started/) is really good and I would recommend reading through the first 2 parts. This post is mostly just the tutorial rehashed.*
 
-## What is Docker?
-
 "Docker" is a collection of applications that help package and distribute applications. Installing Docker on a machine is similar to installing a Java Virtual Machine. However, where a JVM abstracts the CPU, Docker abstracts an entire system.
 
 <!-- more -->

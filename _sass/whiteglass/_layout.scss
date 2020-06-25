@@ -15,6 +15,10 @@
   letter-spacing: -1px;
   margin-bottom: 0;
   float: left;
+  background: url('icon_black.png') no-repeat left center;
+    background-size: auto;
+  background-size: 1em;
+  padding-left: 48px;
 
   &,
   &:visited {
@@ -161,7 +165,7 @@
   margin-bottom: $spacing-unit;
 
   h1 {
-    font-size: 26px;
+    font-size: 30px;
     padding-top: 15px;
 
     @include media-query($on-laptop) {
@@ -170,7 +174,7 @@
   }
 
   h2 {
-    font-size: 24px;
+    font-size: 28px;
     padding-top: 15px;
 
     @include media-query($on-laptop) {
@@ -200,6 +204,11 @@
     @include media-query($on-laptop) {
       font-size: 18px;
     }
+  }
+
+  p img {
+    margin: 0 auto;
+    display: block;
   }
 }
 
