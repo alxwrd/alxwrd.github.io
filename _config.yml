@@ -38,20 +38,23 @@ facebook_app_id:
 facebook_image:
 google_analytics:
 
-# Plugins
 plugins:
-  - jekyll-archives
-  - jekyll-paginate
-  - jekyll-sitemap
+  - jekyll-optional-front-matter
+
+optional_front_matter:
+  collections: true
 
 # Build settings
-markdown: kramdown
 excerpt_separator: "<!-- more -->"
 
 # Outputting
-permalink: /posts/:year-:month-:day-:title/
-paginate_path: /posts/:num/
+permalink: /posts/:year-:month-:day-:title
 paginate: 5
+
+collections:
+  notes:
+    output: true
+    permalink: /:collection/:name
 
 # Markdown settings
 kramdown:
@@ -61,13 +64,3 @@ kramdown:
   footnote_nr: 1
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   toc_levels: 1..6
-
-# jekyll-archives
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-  layout: category_archives
-  permalinks:
-    category: /categories/:name/
-    tag: /tags/:name/
