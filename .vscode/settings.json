@@ -1,0 +1,9 @@
+{
+  "editor.wrappingIndent": "indent",
+  "editor.overviewRulerBorder": false,
+  "editor.lineHeight": 24,
+  "workbench.colorTheme": "Quiet Light",
+  "[markdown]": {
+    "editor.quickSuggestions": true
+  },
+}

@@ -67,4 +67,14 @@
 
   {% include fonts.html %}
   {% include google_analytics.html %}
+
+  <script type="text/javascript">
+    window.onload = function() {
+      document
+        .querySelectorAll("a[title]:not([href^=http])")
+        .forEach((a) => {
+          a.innerText = a.title;
+        });
+    }
+  </script>
 </head>
