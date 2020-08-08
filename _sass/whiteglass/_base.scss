@@ -177,6 +177,27 @@ pre {
   }
 }
 
+kbd {
+  display: inline;
+  display: inline-block;
+  min-width: 1em;
+  padding: .2em .26em;
+  font: normal .85em/1 "Lucida Grande", Lucida, Arial, sans-serif;
+      font-size: 0.85em;
+  text-align: center;
+  text-decoration: none;
+  -moz-border-radius: .3em;
+  -webkit-border-radius: .3em;
+  border-radius: .25em;
+  border: none;
+  cursor: default;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  border: black solid 1px;
+  font-size: .75em;
+}
+
 
 
 /**
