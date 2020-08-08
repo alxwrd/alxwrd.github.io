@@ -6,4 +6,5 @@
   "[markdown]": {
     "editor.quickSuggestions": true
   },
+  "markdown.extension.toc.levels": "2..6"
 }
