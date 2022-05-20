@@ -1,12 +1,13 @@
 ---
 layout: post
 title:  "HTB CTF - The Three-Eyed Oracle writeup"
-date:   2022-05-20 08:30:00
+date:   2022-05-20 08:40:00
 tags: ["ctf-writeup"]
 author: "Alex Ward"
 ---
 
-This post is the hero of this solve -> https://zachgrace.com/posts/attacking-ecb/
+This post is the hero of this solve ->
+[https://zachgrace.com/posts/attacking-ecb/](https://zachgrace.com/posts/attacking-ecb/)
 
 ![](https://i.postimg.cc/8PJzk5Y9/the-three-eyed-oracle.gif)
 
