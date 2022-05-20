@@ -21,7 +21,7 @@ def encrypt_block(block, secret):
     return enc_block
 ```
 
-<!--more-->
+<!-- more -->
 
 Searching the web for "`(block[i]+secret[i]) % 256`" lead me to
 the Wikipedia page [RC4](https://en.wikipedia.org/wiki/RC4)!

@@ -12,7 +12,7 @@ This post is the hero of this solve -> https://zachgrace.com/posts/attacking-ecb
 
 _I love challenges like these, where the flag slowly falls out_
 
-<!--more-->
+<!-- more -->
 
 ```python
 

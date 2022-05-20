@@ -13,7 +13,7 @@ limited, you can select a colour, and upload a file.
 Inspecting the source there is a route `/api/alphafy` that accepts
 some JSON, expected in the following format:
 
-<!--more-->
+<!-- more -->
 
 ```json
 {

@@ -11,7 +11,7 @@ author: "Alex Ward"
 A fairly simple solve. The site doesn't have much functionality and
 the only input is the ability to use markdown to create an invoice.
 
-<!--more-->
+<!-- more -->
 
 ![](https://i.postimg.cc/pLFqRfx7/Pasted-image-20220515091519.png)
 
