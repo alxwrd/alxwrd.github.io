@@ -69,4 +69,6 @@ upload. It is the only number in Phalcon's ID that's not present in the
 rest of the ID's. If we can provide a model that predict's an image of
 a 2 as something else, we should pass all checks.
 
-The actual solve was got by a team mate here, who heroicly trained a broken model!
+The actual solve on this one was gotten by my team mate,
+[Mehdi](https://www.linkedin.com/in/mehdi-soleimannejad), who heroicly
+trained a broken model!
