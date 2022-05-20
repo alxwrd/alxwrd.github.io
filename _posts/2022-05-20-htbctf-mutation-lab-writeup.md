@@ -13,6 +13,8 @@ After initially dismissing this challenge because it was "blind"
 
 The site greets you with a login portal where you can register a user.
 
+<!-- more -->
+
 ![](https://i.postimg.cc/XJKRJKgQ/Pasted-image-20220518220842.png)
 
 After creating a user and logging in, the main application allows you
