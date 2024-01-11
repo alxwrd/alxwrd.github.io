@@ -1,0 +1,92 @@
+---
+import { Icon } from "astro-icon";
+
+import Avatar from "../../components/Avatar.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import { getPosts } from "../../posts";
+
+const title = "Alex Ward's Blog";
+const description = "Latest articles.";
+const permalink = `${Astro.site.href}blog`;
+
+let posts = await getPosts();
+---
+
+<BaseLayout
+    title={title}
+    description={description}
+    permalink={permalink}
+    current="blog"
+>
+    <section class="w-full md:w-2/3">
+        <h1 class="pb-2 font-bold text-2xl">
+            <a href="/" class="items-center"
+                ><Icon
+                    class="float-left text-xl font-bold -ml-12 mt-1 h-6 hover:text-neutral-700"
+                    pack="mdi"
+                    name="arrow-left-thick"
+                /></a
+            >
+            {title}
+        </h1>
+        <section class="mb-2 max-w -ml-2 pb-6">
+            {
+                posts
+                    .reduce((acc, post) => {
+                        post.frontmatter.tags.forEach((tag) => {
+                            if (!acc.includes(tag)) {
+                                acc.push(tag);
+                            }
+                        });
+                        return acc;
+                    }, [])
+                    .map((tag) => {
+                        return (
+                            <a href="">
+                                <span class="text-xs inline-flex items-center font-medium leading-sm px-3 py-1 bg-neutral-100 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
+                                    #{tag}
+                                </span>
+                            </a>
+                        );
+                    })
+            }
+        </section>
+        {
+            posts.map((post) => {
+                return (
+                    <article
+                        class="pb-4"
+                        id={post.slug}
+                        transition:name={post.slug}
+                        transition:animate="slide"
+                    >
+                        <small>
+                            <time
+                                datetime={post.frontmatter.date.toISOString()}
+                            >
+                                {post.frontmatter.localeDate}
+                            </time>
+                        </small>
+                        <h2 class="font-normal">
+                            <a
+                                href={`/blog/${post.slug}`}
+                                class="text-blue-700 hover:text-blue-500 visited:text-purple-700 visited:hover:text-purple-500"
+                            >
+                                {post.frontmatter.title}
+                            </a>
+                        </h2>
+                        <p>{post.frontmatter.description}</p>
+                    </article>
+                );
+            })
+        }
+    </section>
+    <aside class="w-1/3">
+        <section
+            class="mx-auto invisible opacity-0 md:visible md:opacity-0 lg:visible lg:opacity-100 transition-opacity ease-in-out duration-1000"
+        >
+            <Avatar />
+        </section>
+    </aside>
+</BaseLayout>

@@ -4,7 +4,11 @@
   "editor.lineHeight": 24,
   "workbench.colorTheme": "Quiet Light",
   "[markdown]": {
-    "editor.quickSuggestions": true
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    }
   },
   "markdown.extension.toc.levels": "2..6"
 }

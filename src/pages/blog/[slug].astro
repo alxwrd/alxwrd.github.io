@@ -1,0 +1,56 @@
+---
+import Icon from "astro-icon";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { parsePost, getPosts } from "../../posts";
+
+export async function getStaticPaths() {
+    const posts = await getPosts();
+
+    return posts.map((p) => ({
+        params: { slug: p.file.split("/").pop().split(".").shift() },
+        props: { post: p },
+    }));
+}
+
+const post = parsePost(Astro.props.post);
+---
+
+<BaseLayout
+    title={post.frontmatter.title}
+    description={post.frontmatter.title}
+    permalink={`${Astro.site.href}blog/${post.slug}`}
+    current="blog"
+>
+    <section class="w-full lg:w-2/3">
+        <h1 class="pb-2 font-bold text-2xl">
+            <a href="/blog" class="items-center"
+                ><Icon
+                    class="float-left text-xl font-bold -ml-12 mt-1 h-6 hover:text-neutral-700"
+                    pack="mdi"
+                    name="arrow-left-thick"
+                /></a
+            >
+            {post.frontmatter.title}
+        </h1>
+        <section class="mb-2 max-w -ml-2 pb-6">
+            {
+                post.frontmatter.tags.map((tag) => {
+                    return (
+                        <a href="">
+                            <span class="text-xs inline-flex items-center font-medium leading-sm px-3 py-1 bg-neutral-100 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
+                                #{tag}
+                            </span>
+                        </a>
+                    );
+                })
+            }
+        </section>
+        <article
+            class="prose prose-neutral prose-img:rounded-md prose-p:text-justify prose-code:text-xs"
+            id={post.slug}
+            transition:name={post.slug}
+        >
+            <post.Content />
+        </article>
+    </section>
+</BaseLayout>
