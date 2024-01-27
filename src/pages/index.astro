@@ -7,28 +7,33 @@ const permalink = Astro.site.href;
 ---
 
 <BaseLayout description={description} permalink={permalink}>
-    <section class="w-1/2">
-        <h1 class="text-3xl mt-8 mb-4 font-semibold">Hello - I'm Alex 👋</h1>
-        <p class="text-xl text-neutral-500">
-            A software engineer from Nottingham, UK!
+  <section class="w-1/2">
+    <h1 class="font-['Lobster'] text-7xl text-center my-8">Alex Ward</h1>
+    <div class="text-xl text-neutral-700">
+      <p>Hello - I'm Alex 👋</p>
+      <p>A software engineer from Nottingham, UK!</p>
+    </div>
+  </section>
+  <section
+    class="mx-auto invisible opacity-0 md:visible md:opacity-0 lg:visible lg:opacity-100 ease-in-out duration-1000"
+  >
+    <aside>
+      <Avatar />
+      <div class="text-sm w-full m-6">
+        <div class="flex flex-col">
+          <div class="w-full">
+            <div class="w-20 font-bold inline-block">Email</div><a href="mailto:alxwrd@googlemail.com">alxwrd@googlemail.com</a>
+          </div>
+          <div>
+            <div class="w-20 font-bold inline-block">Github</div><a href="https://github.com">alxwrd</a>
+          </div>
+        </div>
+      </div>
             <!-- <iframe
-                width="670"
-                height="800"
-                class="no-scrollbar"
-                src="https://www.inoreader.com/stream/user/1004882654/tag/Blogs%20I%20read/view/html?cs=m"
-            ></iframe> -->
-        </p>
-    </section>
-    <section
-        class="mx-auto invisible opacity-0 md:visible md:opacity-0 lg:visible lg:opacity-100 transition-opacity ease-in-out duration-1000"
-    >
-        <aside class="w-2/3">
-            <Avatar />
-            <iframe
                 height="800"
                 seamless="seamless"
                 src="https://www.inoreader.com/stream/user/1004882654/tag/Blogs/view/html?t=%20&l=https%3A%2F%2Falxwrd.co.uk%2Ffavicon.ico&lw=0&cs=m&ta=j&lh=0"
-                tabindex="-1"></iframe>
-        </aside>
-    </section>
+                tabindex="-1"></iframe> -->
+    </aside>
+  </section>
 </BaseLayout>

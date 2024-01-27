@@ -3,11 +3,14 @@ const links = [
     {"href": "/blog", "text": "blog"},
     {"href": "/projects", "text": "projects"},
     {"href": "https://github.com/alxwrd", "text": "github"},
+    {"href": "https://cv.alxwrd.co.uk/", "text": "cv"},
 ];
 ---
 
-<div transition:name="avatar" class="w-64 mx-auto">
+<div class="w-64 mx-auto">
     <img
+        transition:persist
+        transition:name={"avatar"}
         class="rounded w-40 h-40 mx-auto"
         src="https://s.gravatar.com/avatar/6ab87d8fff9622d544257529beaeb4142a5679e2cc3de9a44b3efaf9ed781e32?s=300"
         alt="My avatar: "
@@ -19,7 +22,14 @@ const links = [
         {
             links.map(({href, text}) => (
                 <p
-                    class=`inline-block transition ease-in-out duration-300 hover:scale-110 ${Astro.url.pathname == href? "font-semibold": "font-normal"}`
+                    class:list={[
+                        "inline-block",
+                        "transition",
+                        "ease-in-out",
+                        "duration-300",
+                        "hover:scale-110",
+                        Astro.url.pathname == href? "font-semibold": "font-normal"
+                    ]}
                 >
                     <a href={href}>{text}</a>
                     </p>

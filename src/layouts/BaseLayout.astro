@@ -14,10 +14,10 @@ const { title, description, permalink, current } = Astro.props;
 
 <html lang="en">
     <Head title={title} description={description} permalink={permalink} />
-    <body class="max-w-4xl p-4 mx-auto">
+    <body class="max-w-4xl p-4 mx-auto font-serif">
         <Header />
 
-        <main class="flex flex-row w-full pl-10">
+        <main class="flex flex-row w-full pl-10 ">
             <slot />
         </main>
 
