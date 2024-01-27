@@ -1,8 +1,0 @@
----
-layout: notes
----
-
-
-{% for note in site.notes %}
-    <a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a>
-{% endfor %}

@@ -1,0 +1,82 @@
+---
+import { Icon } from "astro-icon";
+
+import Avatar from "../../components/Avatar.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import { getProjects } from "../../projects";
+
+const title = "Alex Ward's Projects";
+const description = "Latest articles";
+const permalink = `${Astro.site.href}blog`;
+
+let projects = await getProjects();
+---
+
+<BaseLayout
+    title={title}
+    description={description}
+    permalink={permalink}
+    current="blog"
+>
+    <section class="w-full md:w-2/3">
+        <h1 class="pb-2 font-bold text-2xl">
+            <a href="/" class="items-center"
+                ><Icon
+                    class="float-left text-xl font-bold -ml-12 mt-1 h-6 hover:text-neutral-700"
+                    pack="mdi"
+                    name="arrow-left-thick"
+                /></a
+            >
+            {title}
+        </h1>
+        {
+            projects.map((project) => {
+                return (
+                    <article
+                        class="pb-8"
+                        id={project.full_name}
+                        transition:name={project.full_name}
+                    >
+                        <div>
+                            <h2 class="font-normal">
+                                <Icon
+                                    class="font-bold h-6 hover:text-neutral-700 inline mr-2"
+                                    pack="mdi"
+                                    name="github"
+                                />
+                                <a
+                                    href={`${project.html_url}`}
+                                    class="text-blue-700 hover:text-blue-500 visited:text-purple-700 visited:hover:text-purple-500"
+                                >
+                                    {project.name}
+                                </a>
+                            </h2>
+                        </div>
+                        {project.topics.length ? (
+                            <div class="h-8 overflow-hidden w-96 hover:overflow-visible hover:w-screen -ml-1 -mt-1">
+                                {project.topics.map((tag) => {
+                                    return (
+                                        <a href="" class="">
+                                            <span class="text-2xs inline-flex items-center font-medium leading-sm px-2 py-.5 bg-neutral-100 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
+                                                #{tag}
+                                            </span>
+                                        </a>
+                                    );
+                                })}
+                            </div>
+                        ) : null}
+                        <p>{project.description}</p>
+                    </article>
+                );
+            })
+        }
+    </section>
+    <aside>
+        <section
+            class="mx-auto invisible opacity-0 md:visible md:opacity-0 lg:visible lg:opacity-100 ease-in-out duration-1000"
+        >
+            <Avatar />
+        </section>
+    </aside>
+</BaseLayout>
