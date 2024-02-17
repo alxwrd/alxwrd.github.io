@@ -20,8 +20,11 @@ let projects = await getProjects();
     permalink={permalink}
     current="blog"
 >
-    <section class="w-full md:w-2/3">
+    <section>
         <PageTitle title={title} href="/" />
+        <aside class="w-80 sm:float-right mx-auto">
+            <Avatar />
+        </aside>
         {
             projects.map((project) => {
                 return (
