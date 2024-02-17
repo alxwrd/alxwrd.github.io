@@ -1,8 +1,7 @@
 ---
-import { Icon } from "astro-icon";
-
 import Avatar from "../../components/Avatar.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageTitle from "../../components/PageTitle.astro";
 
 import { getPosts } from "../../posts";
 
@@ -20,16 +19,7 @@ let posts = await getPosts();
     current="blog"
 >
     <section class="w-full md:w-2/3">
-        <h1 class="pb-2 font-bold text-2xl">
-            <a href="/" class="items-center"
-                ><Icon
-                    class="float-left text-xl font-bold -ml-12 mt-1 h-6 hover:text-neutral-700"
-                    pack="mdi"
-                    name="arrow-left-thick"
-                /></a
-            >
-            {title}
-        </h1>
+        <PageTitle title={title} href="/" />
         <section class="mb-2 max-w -ml-2 pb-6">
             {
                 posts

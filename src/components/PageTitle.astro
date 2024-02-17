@@ -1,0 +1,15 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { title, href } = Astro.props;
+---
+
+<h1 class="pb-2 font-bold text-2xl">
+    <a href={href} class="items-center"
+        ><Icon
+            class="float-left text-xl font-bold sm:-ml-12 mx-4 mt-1 h-6 hover:text-neutral-700"
+            name="fa-solid:arrow-left"
+        /></a
+    >
+    {title}
+</h1>
