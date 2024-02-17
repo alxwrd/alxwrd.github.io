@@ -34,8 +34,7 @@ let projects = await getProjects();
                             <h2 class="font-normal">
                                 <Icon
                                     class="font-bold h-6 hover:text-neutral-700 inline mr-2"
-                                    pack="mdi"
-                                    name="github"
+                                    name="fa-brands:github"
                                 />
                                 <a
                                     href={`${project.html_url}`}
@@ -44,6 +43,9 @@ let projects = await getProjects();
                                     {project.name}
                                 </a>
                             </h2>
+                            {project.homepage && (
+                                <Icon name="fa-solid:external-link-alt" />
+                            )}
                         </div>
                         {project.topics.length ? (
                             <div class="h-8 overflow-hidden w-96 hover:overflow-visible hover:w-screen -ml-1 -mt-1">

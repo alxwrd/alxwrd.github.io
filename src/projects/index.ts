@@ -3,6 +3,7 @@ export interface Project {
     name: string;
     full_name: string;
     html_url: string;
+    homepage: string;
     description: string;
     stargazers_count: number;
     watchers_count: number;
@@ -23,9 +24,4 @@ export async function getProjects(): Promise<Project[]> {
     ).filter((p) => !p.fork);
 
     return projects;
-}
-
-
-export async function parsePost() {
-
 }
