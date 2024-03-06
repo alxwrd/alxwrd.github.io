@@ -4,6 +4,7 @@ import { Icon } from "astro-icon/components";
 import Avatar from "../../components/Avatar.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageTitle from "../../components/PageTitle.astro";
+import Link from "../../components/Link.astro";
 
 import { getProjects } from "../../projects";
 
@@ -28,52 +29,56 @@ let projects = await getProjects();
         {
             projects.map((project) => {
                 return (
-                    <article
-                        class="pb-8"
-                        id={project.full_name}
-                        transition:name={project.full_name}
-                    >
-                        <div>
-                            <h2 class="font-normal">
-                                <Icon
-                                    class="font-bold h-6 hover:text-neutral-700 inline mr-2"
-                                    name="fa-brands:github"
-                                />
-                                <a
-                                    href={`${project.html_url}`}
-                                    class="text-blue-700 hover:text-blue-500 visited:text-purple-700 visited:hover:text-purple-500"
-                                >
-                                    {project.name}
-                                </a>
-                            </h2>
-                            {project.homepage && (
-                                <Icon name="fa-solid:external-link-alt" />
-                            )}
-                        </div>
-                        {project.topics.length ? (
-                            <div class="h-8 overflow-hidden w-96 hover:overflow-visible hover:w-screen -ml-1 -mt-1">
-                                {project.topics.map((tag) => {
-                                    return (
-                                        <a href="" class="">
-                                            <span class="text-2xs inline-flex items-center font-medium leading-sm px-2 py-.5 bg-neutral-100 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
-                                                #{tag}
-                                            </span>
+                    <>
+                        <article
+                            class="pb-10"
+                            id={project.full_name}
+                            transition:name={project.full_name}
+                        >
+                            <div>
+                                <h2 class="font-normal align-middle h-8 group">
+                                    <Link
+                                        href={`${project.html_url}`}
+                                        class="align-middle"
+                                    >
+                                        <Icon
+                                            class="font-bold h-6 text-black group-hover:text-neutral-600 inline mr-2 align-middle"
+                                            name="fa-brands:github"
+                                        />
+                                        {project.name}
+                                    </Link>
+                                    {project.homepage && (
+                                        <a
+                                            class="text-xs mx-4 align-middle"
+                                            href={project.homepage}
+                                        >
+                                            <Icon
+                                                name="fa-solid:external-link-alt"
+                                                class="inline-block"
+                                            />{" "}
+                                            View
                                         </a>
-                                    );
-                                })}
+                                    )}
+                                </h2>
                             </div>
-                        ) : null}
-                        <p>{project.description}</p>
-                    </article>
+                            {project.topics.length ? (
+                                <div class="h-8 -ml-1 -mt-1">
+                                    {project.topics.map((tag) => {
+                                        return (
+                                            <a href="" class="">
+                                                <span class="text-2xs inline-flex items-center font-medium leading-sm px-2 py-.5 bg-blue-50 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
+                                                    #{tag}
+                                                </span>
+                                            </a>
+                                        );
+                                    })}
+                                </div>
+                            ) : null}
+                            <p>{project.description}</p>
+                        </article>
+                    </>
                 );
             })
         }
     </section>
-    <aside>
-        <section
-            class="mx-auto invisible opacity-0 md:visible md:opacity-0 lg:visible lg:opacity-100 ease-in-out duration-1000"
-        >
-            <Avatar />
-        </section>
-    </aside>
 </BaseLayout>

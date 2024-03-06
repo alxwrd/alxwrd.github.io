@@ -2,6 +2,7 @@
 import Avatar from "../../components/Avatar.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageTitle from "../../components/PageTitle.astro";
+import Link from "../../components/Link.astro";
 
 import { getPosts } from "../../posts";
 
@@ -61,12 +62,9 @@ let posts = await getPosts();
                             </time>
                         </small>
                         <h2 class="font-medium text-lg">
-                            <a
-                                href={`/blog/${post.slug}`}
-                                class="text-blue-600 hover:text-blue-400 visited:text-purple-700 visited:hover:text-purple-500"
-                            >
+                            <Link href={`/blog/${post.slug}`}>
                                 {post.frontmatter.title}
-                            </a>
+                            </Link>
                         </h2>
                         <p>{post.frontmatter.description}</p>
                     </article>

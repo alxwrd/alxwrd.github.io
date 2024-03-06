@@ -13,15 +13,20 @@ export interface Project {
 
 
 export async function getProjects(): Promise<Project[]> {
-    const projects: Array<any> = (
-        await fetch(
-            "https://api.github.com/users/alxwrd/repos?sort=pushed&per_page=100", {
+    const response = await fetch(
+        "https://api.github.com/users/alxwrd/repos?sort=pushed&per_page=100",
+        {
             headers: {
                 "User-Agent": "alxwrd",
             },
         }
-        ).then((res) => res.json())
-    ).filter((p) => !p.fork);
+    )
+
+    if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+    }
+
+    const projects: Array<any> = (await response.json()).filter((p) => !p.fork);
 
     return projects;
 }
