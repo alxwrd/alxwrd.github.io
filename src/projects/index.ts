@@ -9,12 +9,14 @@ export interface Project {
     watchers_count: number;
     language: string;
     topics: string[];
+    fork: boolean;
+    archived: boolean;
+    disabled: boolean;
 }
 
 
-export async function getProjects(): Promise<Project[]> {
-    const response = await fetch(
-        "https://api.github.com/users/alxwrd/repos?sort=pushed&per_page=100",
+async function load<T>(url: string): Promise<T> {
+    const response = await fetch(url,
         {
             headers: {
                 "User-Agent": "alxwrd",
@@ -26,7 +28,20 @@ export async function getProjects(): Promise<Project[]> {
         throw new Error(`${response.status} ${response.statusText}`);
     }
 
-    const projects: Array<any> = (await response.json()).filter((p) => !p.fork);
+    return await response.json();
+}
 
-    return projects;
+
+export async function getProjects(): Promise<Project[]> {
+
+    const projects = await load<Project[]>("https://api.github.com/users/alxwrd/repos?per_page=100")
+
+    projects.push(
+        await load<Project>("https://api.github.com/repos/textstat/textstat"),
+        await load<Project>("https://api.github.com/repos/trailassociation-uk/trailassociation.uk"),
+    )
+
+    return projects
+        .filter((p) => !p.fork && !p.archived && !p.disabled)
+        .sort((a, b) => b.stargazers_count - a.stargazers_count);
 }
