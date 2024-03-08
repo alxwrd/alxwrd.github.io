@@ -1,8 +1,8 @@
 ---
-import Avatar from "../../components/Avatar.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageTitle from "../../components/PageTitle.astro";
-import Link from "../../components/Link.astro";
+
+import { Avatar, Link } from "../../components/ui";
 
 import { getPosts } from "../../posts";
 
@@ -21,9 +21,6 @@ let posts = await getPosts();
 >
     <section>
         <PageTitle title={title} href="/" />
-        <aside class="sm:float-right mx-auto">
-            <Avatar />
-        </aside>
         <section class="max-w -ml-2 m-4">
             {
                 posts

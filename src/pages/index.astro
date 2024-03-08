@@ -1,5 +1,5 @@
 ---
-import Avatar from "../components/Avatar.astro";
+import { Avatar, Navigation } from "../components/ui";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const description =
@@ -13,7 +13,8 @@ const permalink = Astro.site.href;
       Alex Ward
     </h1>
     <aside class="sm:float-right mx-auto">
-      <Avatar showContact />
+      <Navigation align="center" />
+      <Avatar />
     </aside>
     <div class="text-xl text-neutral-700">
       <p>Hello - I'm Alex 👋</p>

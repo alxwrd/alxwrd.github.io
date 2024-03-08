@@ -1,10 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import Avatar from "../../components/Avatar.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageTitle from "../../components/PageTitle.astro";
-import Link from "../../components/Link.astro";
+
+import { Avatar, StarCount, Link } from "../../components/ui";
 
 import { getProjects } from "../../projects";
 
@@ -23,19 +23,16 @@ let projects = await getProjects();
 >
     <section>
         <PageTitle title={title} href="/" />
-        <aside class="w-80 sm:float-right mx-auto">
-            <Avatar />
-        </aside>
         {
             projects.map((project) => {
                 return (
-                    <>
-                        <article
-                            class="pb-10"
-                            id={project.full_name}
-                            transition:name={project.full_name}
-                        >
-                            <div>
+                    <article
+                        class="pb-10 flex flex-row justify-between"
+                        id={project.full_name}
+                        transition:name={project.full_name}
+                    >
+                        <div>
+                            <div class="flex flex-row">
                                 <h2 class="font-normal align-middle h-8 group">
                                     <Link
                                         href={`${project.html_url}`}
@@ -47,22 +44,22 @@ let projects = await getProjects();
                                         />
                                         {project.name}
                                     </Link>
-                                    {project.homepage && (
-                                        <a
-                                            class="text-xs mx-4 align-middle"
-                                            href={project.homepage}
-                                        >
-                                            <Icon
-                                                name="fa-solid:external-link-alt"
-                                                class="inline-block"
-                                            />{" "}
-                                            View
-                                        </a>
-                                    )}
                                 </h2>
+                                <StarCount count={project.stargazers_count} />
+                                {project.homepage && (
+                                    <a
+                                        class="text-xs mx-4 inline-block align-middle"
+                                        href={project.homepage}
+                                    >
+                                        <Icon
+                                            name="fa-solid:external-link-alt"
+                                            class="inline-block"
+                                        />
+                                    </a>
+                                )}
                             </div>
                             {project.topics.length ? (
-                                <div class="h-8 -ml-1 -mt-1">
+                                <div class="-ml-1 mb-2">
                                     {project.topics.map((tag) => {
                                         return (
                                             <a href="" class="">
@@ -75,8 +72,20 @@ let projects = await getProjects();
                                 </div>
                             ) : null}
                             <p>{project.description}</p>
-                        </article>
-                    </>
+                        </div>
+                        {project.homepage && (
+                            <div class="rounded overflow-hidden w-[384px] h-[216px] border shrink-0 hidden sm:block">
+                                <iframe
+                                    class="rounded -translate-y-[252px] -translate-x-[448px] scale-[.3] w-[1280px] h-[720px]"
+                                    src={project.homepage}
+                                    scrolling="no"
+                                />
+                            </div>
+                        )}
+                        {!project.homepage && (
+                            <div class="rounded overflow-hidden w-[384px] h-1 shrink-0 hidden sm:block" />
+                        )}
+                    </article>
                 );
             })
         }

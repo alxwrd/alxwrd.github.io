@@ -1,0 +1,17 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { count } = Astro.props;
+---
+
+<div class="mx-3">
+    <div
+        class="rounded-full bg-neutral-100 text-xs pb-1 px-3 inline-block text-center"
+    >
+        <Icon
+            name="fa-solid:star"
+            class="inline-block size-[11px] group-hover:text-neutral-600"
+        />
+        {count}
+    </div>
+</div>

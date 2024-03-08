@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Navigation } from "./ui";
 
 const { title, href } = Astro.props;
 ---
@@ -12,4 +13,5 @@ const { title, href } = Astro.props;
         /></a
     >
     {title}
+    <Navigation />
 </h1>
