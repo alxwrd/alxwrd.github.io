@@ -2,9 +2,9 @@
 import { ViewTransitions } from "astro:transitions";
 
 export interface Props {
-    title: string;
-    description: string;
-    permalink: string;
+  title: string;
+  description: string;
+  permalink: string;
 }
 
 const { title, description, permalink } = Astro.props;
@@ -14,37 +14,48 @@ const pageTitle = title || "Alex Ward";
 ---
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-        async
-        data-id="101445880"
-        src="https://clicky.alxwrd.co.uk/e58b194da9.js"></script>
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
-        rel="stylesheet"
-    />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script data-id="101445880" src="https://clicky.alxwrd.co.uk/e58b194da9.js"
+  ></script>
+  <script>
+    (function () {
+      const proxied = clicky?.inject;
 
-    <meta name="generator" content={Astro.generator} />
+      clicky.inject = function (src, type) {
+        if (src.startsWith("/4cd02f0442")) {
+          return proxied(`https://clicky.alxwrd.co.uk/${src}`, type);
+        }
 
-    <title>{pageTitle}</title>
-    <meta name="title" content={pageTitle} />
-    <meta name="description" content={description} />
+        return proxied(src, type);
+      };
+    })();
+  </script>
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+    rel="stylesheet"
+  />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={permalink} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={socialUrl} />
+  <meta name="generator" content={Astro.generator} />
 
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={permalink} />
-    <meta property="twitter:title" content={pageTitle} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={socialUrl} />
+  <title>{pageTitle}</title>
+  <meta name="title" content={pageTitle} />
+  <meta name="description" content={description} />
 
-    <ViewTransitions />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={permalink} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={socialUrl} />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={permalink} />
+  <meta property="twitter:title" content={pageTitle} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={socialUrl} />
+
+  <ViewTransitions />
 </head>
