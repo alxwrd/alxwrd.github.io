@@ -7,7 +7,7 @@ author: "Alex Ward"
 
 Clicky is a "privacy-friendly website analytics" which provides insights into a
 websites visitor numbers without the need for tracking cookies. I've been
-trailing Clicky for about three weeks at this point - and while my visitor
+trialling Clicky for about three weeks at this point - and while my visitor
 numbers are low, it's nice to see that on occasion people are finding what I've
 build!
 
@@ -26,14 +26,18 @@ fair. However, I just want to see my ~20 site views a week and get some
 satisfaction that I'm not shouting into the void.
 
 _(If you disagree, Clicky offers a global opt-out for all sites using their
-service which can be found on their [opt-out page](https://clicky.com/optout))_
+service which can be found on their [opt-out page][optout])_
+
+[optout]: https://clicky.com/optout "Clicky opt-out"
 
 Clicky has a solution to the blocking which uses a reverse proxy to serve the
 Javascript and beacon via your own domain.
 
 I wanted to set this up, so I decided to have a go using a compute instance in
-[Oracle Cloud](https://www.oracle.com/uk/cloud/) as I have usage spare under
-[the free tier](https://www.oracle.com/uk/cloud/free/).
+[Oracle Cloud] as I have usage spare under [free tier].
+
+[oracle cloud]: https://www.oracle.com/uk/cloud/ "Oracle Cloud Infrastructure"
+[free tier]: https://www.oracle.com/uk/cloud/free/ "Oracle Cloud Infrastructure free tier"
 
 ## Setting up the instance
 
@@ -50,11 +54,11 @@ sudo dnf upgrade
 
 This chugged along, but eventually the output stopped and the ssh session became
 unresponsive. I was unable to reconnect, so I rebooted the instance and tried
-again with the same result!
+again - only to experience the same result!
 
-After another reboot I opened two ssh sessions - in one session I ran `dnf
-upgrade` and in the other I ran `top`. I observed that before long `dnf` ran out
-of memory.
+After another reboot I opened two ssh sessions - in one session I ran
+`dnf upgrade` and in the other I ran `top`. I observed that before long
+`dnf` ran out of memory.
 
 The instance was configured with 1GB of swap space, so after I increased that to
 4GB and everything started to go a lot smoother.
@@ -79,19 +83,22 @@ sudo firewall-cmd --add-service={http,https} --permanent
 sudo firewall-cmd --reload
 ```
 
-Oracle Linux has
-[SELinux](https://en.wikipedia.org/wiki/Security-Enhanced_Linux) enabled meaning
-the ability to forward traffic would need to be explicitly enabled too.
+Oracle Linux has [SELinux] enabled meaning the ability to forward
+traffic would need to be explicitly enabled too.
+
 ```shell
 sudo setsebool -P httpd_can_network_relay 1
 ```
 
-As this server would just be forwarding traffic, I opted to configure nginx in
-`/etc/nginx/nginx.conf`. I configured the server as per Clicky's documentation
-and arrived at the following:
+[selinux]: https://en.wikipedia.org/wiki/Security-Enhanced_Linux "Security-Enhanced Linux"
+
+As this server would just be forwarding traffic, I opted to configure nginx
+simply in `/etc/nginx/nginx.conf` instead of breaking everything up. I
+configured the server as per Clicky's documentation and arrived at the
+following configuration:
 
 <details>
-<summary>click to expand</summary>
+<summary><code>/etc/nginx/nginx.conf</code></summary>
 
 ```perl
 user nginx;
@@ -189,11 +196,12 @@ http {
 ## Getting an SSL certificate
 
 Getting an installing an SSL certificate was super easy with
-[Certbot](https://certbot.eff.org/).
+[Certbot].
 
-I followed the [instructions for
-Fedora](https://certbot.eff.org/instructions?ws=nginx&os=fedora&tab=standard),
-but the process is:
+I followed the [instructions for Fedora][certbot-install], but the process is:
+
+[certbot]: https://certbot.eff.org/ "Certbot"
+[certbot-install]: https://certbot.eff.org/instructions?ws=nginx&os=fedora&tab=standard "Certbot installation"
 
 <details>
 <summary>Install snapd</summary>
@@ -239,7 +247,7 @@ I cleaned up the `nginx.conf` after certbot had got it's hands on it, and this
 is the result:
 
 <details>
-<summary>click to expand</summary>
+<summary><code>/etc/nginx/nginx.conf</code></summary>
 
 ```perl
 user nginx;
