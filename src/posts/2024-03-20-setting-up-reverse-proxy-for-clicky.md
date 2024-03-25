@@ -404,7 +404,7 @@ send the traffic to the correct place.
 
       clicky.inject = function (src, type) {
         if (src.startsWith("/4cd02f0442")) {
-          return proxied(`https://clicky.alxwrd.co.uk/${src}`, type);
+          return proxied(`https://clicky.alxwrd.co.uk${src}`, type);
         }
 
         return proxied(src, type);
