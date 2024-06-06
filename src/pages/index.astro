@@ -1,5 +1,5 @@
 ---
-import { Avatar, Navigation } from "../components/ui";
+import { Avatar, Link, Navigation } from "../components/ui";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const description =
@@ -17,23 +17,25 @@ const permalink = Astro.site.href;
       <Avatar />
     </aside>
     <div class="text-xl text-neutral-700">
-      <p>Hello - I'm Alex 👋</p>
-      <p>I'm a software engineer based in Nottingham 🏹 in the UK.</p>
-      <p>
+      <p class="mb-8">Hello - I'm Alex 👋</p>
+      <p class="mb-4">
+        I'm a software engineer based in Nottingham 🏹 in the UK.
+      </p>
+      <p class="mb-4">
         I've been in software for almost 8 years - originally coming from a
         background of call-center and customer service!
       </p>
 
-      <p>
+      <p class="mb-4">
         Currently, I am a software engineer at
-        <a href="https://deepsea.ai">DeepSea</a>.
+        <Link href="https://deepsea.ai">DeepSea</Link>.
       </p>
 
       <p>
         In my free time, you can find me either:
-        <ul>
+        <ul class="list-disc pl-8">
+          <li class="pt-2">bouldering</li>
           <li>mountain biking</li>
-          <li>bouldering</li>
           <li>making and playing video games</li>
           <li>or spending time with my family.</li>
         </ul>

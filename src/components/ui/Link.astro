@@ -10,6 +10,5 @@ const { href, class: _class = "" } = Astro.props;
 <a
     href={href}
     class={`text-blue-700 hover:text-blue-500 visited:text-purple-700 visited:hover:text-purple-500 ${_class}`}
+    ><slot /></a
 >
-    <slot />
-</a>
