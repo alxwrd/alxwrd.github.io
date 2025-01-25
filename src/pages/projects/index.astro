@@ -1,10 +1,9 @@
 ---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageTitle from "@components/PageTitle.astro";
+
+import { StarCount, Link } from "@components/ui";
 import { Icon } from "astro-icon/components";
-
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import PageTitle from "../../components/PageTitle.astro";
-
-import { StarCount, Link } from "../../components/ui";
 
 import { getProjects } from "../../projects";
 
@@ -16,83 +15,78 @@ let projects = await getProjects();
 ---
 
 <BaseLayout
-    title={title}
-    description={description}
-    permalink={permalink}
-    current="blog"
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="blog"
 >
-    <section>
-        <PageTitle title={title} href="/" />
-        {
-            projects.map((project) => {
-                return (
-                    <>
-                        <article
-                            class="pb-8 flex flex-row justify-between"
-                            id={project.full_name}
-                            transition:name={project.full_name}
-                        >
-                            <div>
-                                <div class="flex flex-row">
-                                    <h2 class="font-normal align-middle h-8 group">
-                                        <Link
-                                            href={`${project.html_url}`}
-                                            class="align-middle"
-                                        >
-                                            <Icon
-                                                class="font-bold h-6 text-black group-hover:text-neutral-600 inline mr-2 align-middle"
-                                                name="fa-brands:github"
-                                            />
-                                            {project.name}
-                                        </Link>
-                                    </h2>
-                                    <StarCount
-                                        count={project.stargazers_count}
-                                    />
-                                    {project.homepage && (
-                                        <a
-                                            class="text-xs mx-4 inline-block align-middle"
-                                            href={project.homepage}
-                                        >
-                                            <Icon
-                                                name="fa-solid:external-link-alt"
-                                                class="inline-block"
-                                            />
-                                        </a>
-                                    )}
-                                </div>
-                                {project.topics.length ? (
-                                    <div class="-ml-1 mb-2">
-                                        {project.topics.map((tag) => {
-                                            return (
-                                                <a href="" class="">
-                                                    <span class="text-2xs inline-flex items-center font-medium leading-sm px-2 py-.5 bg-blue-50 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
-                                                        #{tag}
-                                                    </span>
-                                                </a>
-                                            );
-                                        })}
-                                    </div>
-                                ) : null}
-                                <p>{project.description}</p>
-                            </div>
-                            {project.homepage && (
-                                <div class="rounded overflow-hidden w-[384px] h-[216px] border shrink-0 hidden sm:block">
-                                    <iframe
-                                        class="rounded -translate-y-[252px] -translate-x-[448px] scale-[.3] w-[1280px] h-[720px]"
-                                        src={project.homepage}
-                                        scrolling="no"
-                                    />
-                                </div>
-                            )}
-                            {!project.homepage && (
-                                <div class="rounded overflow-hidden w-[384px] h-1 shrink-0 hidden sm:block" />
-                            )}
-                        </article>
-                        <hr class="py-4" />
-                    </>
-                );
-            })
-        }
-    </section>
+  <section>
+    <PageTitle title={title} href="/" />
+    {
+      projects.map((project) => {
+        return (
+          <>
+            <article
+              class="pb-8 flex flex-row justify-between"
+              id={project.full_name}
+              transition:name={project.full_name}
+            >
+              <div>
+                <div class="flex flex-row">
+                  <h2 class="font-normal align-middle h-8 group">
+                    <Link href={`${project.html_url}`} class="align-middle">
+                      <Icon
+                        class="font-bold h-6 text-black group-hover:text-neutral-600 inline mr-2 align-middle"
+                        name="fa-brands:github"
+                      />
+                      {project.name}
+                    </Link>
+                  </h2>
+                  <StarCount count={project.stargazers_count} />
+                  {project.homepage && (
+                    <a
+                      class="text-xs mx-4 inline-block align-middle"
+                      href={project.homepage}
+                    >
+                      <Icon
+                        name="fa-solid:external-link-alt"
+                        class="inline-block"
+                      />
+                    </a>
+                  )}
+                </div>
+                {project.topics.length ? (
+                  <div class="-ml-1 mb-2">
+                    {project.topics.map((tag) => {
+                      return (
+                        <a href="" class="">
+                          <span class="text-2xs inline-flex items-center font-medium leading-sm px-2 py-.5 bg-blue-50 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
+                            #{tag}
+                          </span>
+                        </a>
+                      );
+                    })}
+                  </div>
+                ) : null}
+                <p>{project.description}</p>
+              </div>
+              {project.homepage && (
+                <div class="rounded overflow-hidden w-[384px] h-[216px] border shrink-0 hidden sm:block">
+                  <iframe
+                    class="rounded -translate-y-[252px] -translate-x-[448px] scale-[.3] w-[1280px] h-[720px]"
+                    src={project.homepage}
+                    scrolling="no"
+                  />
+                </div>
+              )}
+              {!project.homepage && (
+                <div class="rounded overflow-hidden w-[384px] h-1 shrink-0 hidden sm:block" />
+              )}
+            </article>
+            <hr class="py-4" />
+          </>
+        );
+      })
+    }
+  </section>
 </BaseLayout>

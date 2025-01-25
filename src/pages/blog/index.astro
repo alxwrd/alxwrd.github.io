@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import PageTitle from "../../components/PageTitle.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageTitle from "@components/PageTitle.astro";
 
-import { Avatar, Link } from "../../components/ui";
+import { Link } from "@components/ui";
 
 import { getPosts } from "../../posts";
 
@@ -14,59 +14,51 @@ let posts = await getPosts();
 ---
 
 <BaseLayout
-    title={title}
-    description={description}
-    permalink={permalink}
-    current="blog"
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="blog"
 >
-    <section>
-        <PageTitle title={title} href="/" />
-        <section class="max-w -ml-2 m-4">
-            {
-                posts
-                    .reduce((acc, post) => {
-                        post.frontmatter.tags.forEach((tag) => {
-                            if (!acc.includes(tag)) {
-                                acc.push(tag);
-                            }
-                        });
-                        return acc;
-                    }, [])
-                    .map((tag) => {
-                        return (
-                            <a href="">
-                                <span class="text-xs inline-flex items-center font-medium leading-sm px-3 py-1 bg-neutral-100 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
-                                    #{tag}
-                                </span>
-                            </a>
-                        );
-                    })
-            }
-        </section>
-        {
-            posts.map((post) => {
-                return (
-                    <article
-                        class="pb-4"
-                        id={post.slug}
-                        transition:name={post.slug}
-                    >
-                        <small class="font-thin text-neutral-400 text-xs">
-                            <time
-                                datetime={post.frontmatter.date.toISOString()}
-                            >
-                                {post.frontmatter.localeDate}
-                            </time>
-                        </small>
-                        <h2 class="font-medium text-lg">
-                            <Link href={`/blog/${post.slug}`}>
-                                {post.frontmatter.title}
-                            </Link>
-                        </h2>
-                        <p>{post.frontmatter.description}</p>
-                    </article>
-                );
-            })
-        }
+  <section>
+    <PageTitle title={title} href="/" />
+    <section class="max-w -ml-2 m-4">
+      {
+        posts
+          .reduce((acc, post) => {
+            post.frontmatter.tags.forEach((tag) => {
+              if (!acc.includes(tag)) {
+                acc.push(tag);
+              }
+            });
+            return acc;
+          }, [])
+          .map((tag) => {
+            return (
+              <a href="">
+                <span class="text-xs inline-flex items-center font-medium leading-sm px-3 py-1 bg-neutral-100 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
+                  #{tag}
+                </span>
+              </a>
+            );
+          })
+      }
     </section>
+    {
+      posts.map((post) => {
+        return (
+          <article class="pb-4" id={post.slug} transition:name={post.slug}>
+            <small class="font-thin text-neutral-400 text-xs">
+              <time datetime={post.frontmatter.date.toISOString()}>
+                {post.frontmatter.localeDate}
+              </time>
+            </small>
+            <h2 class="font-medium text-lg">
+              <Link href={`/blog/${post.slug}`}>{post.frontmatter.title}</Link>
+            </h2>
+            <p>{post.frontmatter.description}</p>
+          </article>
+        );
+      })
+    }
+  </section>
 </BaseLayout>
