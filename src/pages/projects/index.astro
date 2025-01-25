@@ -27,7 +27,7 @@ let projects = await getProjects();
         return (
           <>
             <article
-              class="pb-8 flex flex-row justify-between"
+              class="pb-8 flex flex-row justify-between space-x-4"
               id={project.full_name}
               transition:name={project.full_name}
             >
@@ -73,6 +73,7 @@ let projects = await getProjects();
               {project.homepage && (
                 <div class="rounded overflow-hidden w-[384px] h-[216px] border shrink-0 hidden sm:block">
                   <iframe
+                    project-iframe
                     class="rounded -translate-y-[252px] -translate-x-[448px] scale-[.3] w-[1280px] h-[720px]"
                     src={project.homepage}
                     scrolling="no"

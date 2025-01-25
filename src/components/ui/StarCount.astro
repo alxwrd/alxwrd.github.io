@@ -4,14 +4,14 @@ import { Icon } from "astro-icon/components";
 const { count } = Astro.props;
 ---
 
-<div class="mx-3">
-    <div
-        class="rounded-full bg-neutral-100 text-xs pb-1 px-3 inline-block text-center"
-    >
-        <Icon
-            name="fa-solid:star"
-            class="inline-block size-[11px] group-hover:text-neutral-600"
-        />
-        {count}
-    </div>
+<div class="mx-3 group">
+  <div
+    class="rounded-full bg-neutral-100 text-xs py-0.5 px-2 inline-block text-center align-middle"
+  >
+    <Icon
+      name="fa-solid:star"
+      class="inline-block size-2.5 group-hover:text-yellow-500"
+    />
+    <span class="align-middle">{count}</span>
+  </div>
 </div>
