@@ -21,6 +21,7 @@ export function parsePost(post): Post {
         slug: post.file.split("/").pop().split(".").shift(),
         frontmatter: {
             ...post.frontmatter,
+            tags: post.frontmatter.tags ?? [],
             date: new Date(post.frontmatter.date),
             localeDate: new Date(post.frontmatter.date).toLocaleDateString(
                 undefined,
@@ -47,6 +48,20 @@ export async function getPosts(): Promise<Post[]> {
         )
 }
 
+export async function getAllTags(): Promise<string[]> {
+    const posts = await getPosts();
+    return posts.reduce<string[]>((acc, post) => {
+        (post.frontmatter.tags ?? []).forEach((tag) => {
+            if (!acc.includes(tag)) acc.push(tag);
+        });
+        return acc;
+    }, []);
+}
+
+export async function getPostsByTag(tag: string): Promise<Post[]> {
+    const posts = await getPosts();
+    return posts.filter((p) => (p.frontmatter.tags ?? []).includes(tag));
+}
 
 export async function getRssItems() {
     const posts = await getPosts();

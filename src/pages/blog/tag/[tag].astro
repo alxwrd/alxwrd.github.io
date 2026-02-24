@@ -1,0 +1,75 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageTitle from "@components/PageTitle.astro";
+
+import { Link } from "@components/ui";
+
+import { getPostsByTag, getAllTags } from "../../../posts";
+
+export async function getStaticPaths() {
+  const tags = await getAllTags();
+  return tags.map((tag) => ({ params: { tag } }));
+}
+
+const tag = decodeURIComponent(Astro.params.tag ?? "");
+const posts = await getPostsByTag(tag);
+const allTags = await getAllTags();
+
+const title = `Posts tagged #${tag}`;
+const description = `Blog posts tagged with ${tag}.`;
+const permalink = `${Astro.site.href}/blog/tag/${tag}`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="blog"
+>
+  <section>
+    <PageTitle title={title} href="/blog" />
+    <section class="max-w -ml-2 m-4">
+      <a
+        href="/blog"
+        class="text-xs inline-flex items-center font-medium leading-sm px-3 py-1 bg-neutral-200 hover:bg-neutral-300/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1"
+      >
+        All posts
+      </a>
+      {
+        allTags.map((t) => {
+          const isActive = t === tag;
+          return (
+            <a
+              href={`/blog/tag/${encodeURIComponent(t)}`}
+              class:list={[
+                "text-xs inline-flex items-center font-medium leading-sm px-3 py-1 rounded-full mr-1",
+                isActive
+                  ? "bg-neutral-600 text-white hover:bg-neutral-700"
+                  : "bg-neutral-100 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600",
+              ]}
+            >
+              #{t}
+            </a>
+          );
+        })
+      }
+    </section>
+    {
+      posts.map((post) => {
+        return (
+          <article class="pb-4" id={post.slug} transition:name={post.slug}>
+            <small class="font-thin text-neutral-400 text-xs">
+              <time datetime={post.frontmatter.date.toISOString()}>
+                {post.frontmatter.localeDate}
+              </time>
+            </small>
+            <h2 class="font-medium text-lg">
+              <Link href={`/blog/${post.slug}`}>{post.frontmatter.title}</Link>
+            </h2>
+            <p>{post.frontmatter.description}</p>
+          </article>
+        );
+      })
+    }
+  </section>
+</BaseLayout>
