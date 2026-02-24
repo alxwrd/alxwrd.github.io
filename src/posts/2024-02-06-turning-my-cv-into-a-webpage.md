@@ -1,7 +1,7 @@
 ---
 title: "Turning my CV into a webpage"
 date: 2024-02-06 21:00:00
-tags: ["blog"]
+tags: []
 author: "Alex Ward"
 ---
 

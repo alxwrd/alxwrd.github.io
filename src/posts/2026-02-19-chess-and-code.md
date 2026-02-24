@@ -1,7 +1,7 @@
 ---
 title: "Chess and code"
 date: 2026-02-24 21:17:00
-tags: ["blog", "ai"]
+tags: ["ai"]
 author: "Alex Ward"
 ---
 

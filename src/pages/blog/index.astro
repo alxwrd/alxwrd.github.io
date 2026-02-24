@@ -2,15 +2,16 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageTitle from "@components/PageTitle.astro";
 
-import { Link } from "@components/ui";
+import { BlogTag, BlogArticleLink } from "@components/blog";
 
-import { getPosts } from "../../posts";
+import { getPosts, getAllTags } from "../../posts";
 
 const title = "Alex Ward's Blog";
 const description = "Latest articles.";
 const permalink = `${Astro.site.href}/blog`;
 
 let posts = await getPosts();
+let tags = await getAllTags();
 ---
 
 <BaseLayout
@@ -22,43 +23,18 @@ let posts = await getPosts();
   <section>
     <PageTitle title={title} href="/" />
     <section class="max-w -ml-2 m-4">
+      <BlogTag href="/blog" label="#all" isActive={true} />
       {
-        posts
-          .reduce((acc, post) => {
-            post.frontmatter.tags.forEach((tag) => {
-              if (!acc.includes(tag)) {
-                acc.push(tag);
-              }
-            });
-            return acc;
-          }, [])
-          .map((tag) => {
-            return (
-              <a href={`/blog/tag/${encodeURIComponent(tag)}`}>
-                <span class="text-xs inline-flex items-center font-medium leading-sm px-3 py-1 bg-neutral-100 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
-                  #{tag}
-                </span>
-              </a>
-            );
-          })
+        tags.map((tag) => (
+          <BlogTag
+            href={`/blog/tag/${encodeURIComponent(tag)}`}
+            label={`#${tag}`}
+          />
+        ))
       }
     </section>
     {
-      posts.map((post) => {
-        return (
-          <article class="pb-4" id={post.slug} transition:name={post.slug}>
-            <small class="font-thin text-neutral-400 text-xs">
-              <time datetime={post.frontmatter.date.toISOString()}>
-                {post.frontmatter.localeDate}
-              </time>
-            </small>
-            <h2 class="font-medium text-lg">
-              <Link href={`/blog/${post.slug}`}>{post.frontmatter.title}</Link>
-            </h2>
-            <p>{post.frontmatter.description}</p>
-          </article>
-        );
-      })
+      posts.map((post) => <BlogArticleLink post={post} />)
     }
   </section>
 </BaseLayout>

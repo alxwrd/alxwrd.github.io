@@ -1,7 +1,7 @@
 ---
 title: "Advice I wish I had when I started programming"
 date: 2024-02-17 16:00:00
-tags: ["blog"]
+tags: []
 author: "Alex Ward"
 ---
 

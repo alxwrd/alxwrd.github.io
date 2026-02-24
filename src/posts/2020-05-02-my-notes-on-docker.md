@@ -1,7 +1,7 @@
 ---
 title:  "My notes on Docker"
 date:   2020-05-02 21:30:00
-tags: ["blog", "docker"]
+tags: ["docker"]
 author: "Alex Ward"
 ---
 

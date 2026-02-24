@@ -1,0 +1,22 @@
+---
+import { Link } from "@components/ui";
+import type { Post } from "../../posts";
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+---
+
+<article class="pb-4" id={post.slug} transition:name={post.slug}>
+  <small class="font-thin text-neutral-400 text-xs">
+    <time datetime={post.frontmatter.date.toISOString()}>
+      {post.frontmatter.localeDate}
+    </time>
+  </small>
+  <h2 class="font-medium text-lg">
+    <Link href={`/blog/${post.slug}`}>{post.frontmatter.title}</Link>
+  </h2>
+  <p>{post.frontmatter.description}</p>
+</article>

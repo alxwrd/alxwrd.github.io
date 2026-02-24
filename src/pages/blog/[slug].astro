@@ -2,7 +2,9 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageTitle from "@components/PageTitle.astro";
 
-import { parsePost, getPosts } from "../../posts";
+import { BlogTag } from "@components/blog";
+
+import { parsePost, getPosts, getAllTags } from "../../posts";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -14,6 +16,7 @@ export async function getStaticPaths() {
 }
 
 const post = parsePost(Astro.props.post);
+const tags = await getAllTags();
 ---
 
 <BaseLayout
@@ -24,17 +27,15 @@ const post = parsePost(Astro.props.post);
 >
   <section class="w-full lg:w-2/3">
     <PageTitle title={post.frontmatter.title} href="/blog" />
-    <section class="mb-2 max-w -ml-2 pb-6">
+    <section class="max-w -ml-2 m-4">
+      <BlogTag href="/blog" label="#all" />
       {
-        post.frontmatter.tags.map((tag) => {
-          return (
-            <a href={`/blog/tag/${encodeURIComponent(tag)}`}>
-              <span class="text-xs inline-flex items-center font-medium leading-sm px-3 py-1 bg-neutral-100 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600 rounded-full mr-1">
-                #{tag}
-              </span>
-            </a>
-          );
-        })
+        tags.map((t) => (
+          <BlogTag
+            href={`/blog/tag/${encodeURIComponent(t)}`}
+            label={`#${t}`}
+          />
+        ))
       }
     </section>
     <article

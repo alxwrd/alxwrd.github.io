@@ -1,0 +1,22 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  isActive?: boolean;
+}
+
+const { href, label, isActive = false } = Astro.props;
+
+const baseClasses =
+  "text-xs inline-flex items-center font-medium leading-sm px-3 py-1 rounded-full mr-1";
+
+const activeClasses = "bg-neutral-500 text-white hover:bg-neutral-600";
+const inactiveClasses =
+  "bg-neutral-100 hover:bg-neutral-200/75 hover:cursor-pointer text-neutral-600";
+
+const stateClasses = isActive ? activeClasses : inactiveClasses;
+---
+
+<a href={href} class:list={[baseClasses, stateClasses]}>
+  {label}
+</a>

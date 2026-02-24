@@ -1,7 +1,7 @@
 ---
 title: "Setting up a reverse proxy for clicky.com"
 date: 2024-03-21 13:00:00
-tags: ["blog"]
+tags: []
 author: "Alex Ward"
 ---
 
