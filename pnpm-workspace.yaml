@@ -1,0 +1,12 @@
+overrides:
+  zod-to-json-schema: 3.24.6
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+
+allowBuilds:
+  esbuild: true
+  sharp: true
+
+minimumReleaseAge: 0
