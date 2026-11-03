@@ -3,6 +3,7 @@ title: "Setting up WebDAV for Buttercup"
 date: 2024-02-29 16:00:00
 tags: []
 author: "Alex Ward"
+draft: true
 ---
 
 Buttercup is a [FOSS][foss] password manager that uses encrypted archive files, or

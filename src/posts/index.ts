@@ -8,6 +8,7 @@ type FrontMatter = {
     description: string;
     tags: string[];
     author: string;
+    draft?: boolean;
 }
 
 export type Post = MarkdownInstance<FrontMatter> & {
@@ -43,6 +44,8 @@ export async function getPosts(): Promise<Post[]> {
     return (await Promise.all(Object.keys(posts).map(async (key) => {
         return parsePost(await posts[key]())
     })))
+        // Drafts are visible in `astro dev` but excluded from production builds.
+        .filter((post) => import.meta.env.DEV || !post.frontmatter.draft)
         .sort(
             (a, b) => { return a.frontmatter.date > b.frontmatter.date ? -1 : 1 }
         )

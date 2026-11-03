@@ -3,6 +3,7 @@ title: "Is software development cooked?"
 date: 2024-12-01 00:00:00
 tags: ["software-development", "ai", "career"]
 author: "Alex Ward"
+draft: true
 ---
 
 # Introduction

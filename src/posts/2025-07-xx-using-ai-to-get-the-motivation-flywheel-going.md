@@ -3,6 +3,7 @@ title: "Using AI to get the motivation flywheel going"
 date: 2025-07-01 00:00:00
 tags: ["productivity", "ai"]
 author: "Alex Ward"
+draft: true
 ---
 
 # The Motivation Problem in Digital Work

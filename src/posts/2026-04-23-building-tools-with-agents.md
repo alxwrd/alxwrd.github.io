@@ -3,6 +3,7 @@ title: "Building tools with agents"
 date: 2026-04-23 12:00:00
 tags: ["ai"]
 author: "Alex Ward"
+draft: true
 ---
 
 I find there's a tension at the moment when building tooling to support your
@@ -28,9 +29,5 @@ But, I decide to keep my tool and now a question bubbles up, should I _improve_
 it? It solved my problem and I _could_ move on but... maybe the layout of this
 bit of information could be made better, the way to invoke the tool doesn't have
 great DX, and the contrast on this text makes it kinda hard to read. I'm now
-
-
-
-
 
 [1]: https://www.youtube.com/watch?v=fdbXNWkpPMY&t=167s "A love letter to Pi | Lucas Meijer"
